@@ -1,0 +1,33 @@
+{
+  "name": "tsconfig-generator",
+  "version": "0.0.1",
+  "description": "Creates a tsconfig.json by using the paths defined with environment variables",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha *.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unscrambl/tsconfig-generator.git"
+  },
+  "keywords": [
+    "tsconfig",
+    "environment",
+    "variable",
+    "typescript",
+    "generate"
+  ],
+  "author": "Unscrambl",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/unscrambl/tsconfig-generator/issues"
+  },
+  "homepage": "https://github.com/unscrambl/tsconfig-generator#readme",
+  "dependencies": {
+    "commander": "^2.15.1",
+    "is-valid-path": "^0.1.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}

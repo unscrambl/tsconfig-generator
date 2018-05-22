@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "outDir": "../../../../tmp/test/node/path/output/lib",
+        "paths": {
+            "*": [
+                "../../../../tmp/test/node/path/*"
+            ],
+            "@package/*": [
+                "../../../../tmp/test/git/root/*"
+            ],
+            "@testHelpers/*": [
+                "../../../../tmp/test/git/root/test/ts/helpers/*"
+            ]
+        },
+        "typeRoots": [
+            "../../../../tmp/test/node/path/@types"
+        ],
+        "sourceMap": true,
+        "alwaysStrict": true,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "target": "es6",
+        "baseUrl": "."
+    }
+}
