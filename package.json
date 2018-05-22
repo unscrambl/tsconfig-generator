@@ -18,6 +18,7 @@
     "generate"
   ],
   "author": "Unscrambl",
+  "bin": "./index.js",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/unscrambl/tsconfig-generator/issues"
