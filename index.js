@@ -9,8 +9,8 @@ const DEFAULT_JSON_INDENTATION = 4;
 
 program
     .version('0.0.1')
-    .option('-i, --input [inputFile]', 'Input JSON file')
-    .option('-o, --output [outputFile]', 'Output JSON file')
+    .option('-i, --input [inputFile]', 'Input JSON file path')
+    .option('-o, --output [outputFile]', 'Output JSON file path (Default: ./tsconfig.json)')
     .parse(process.argv);
 
 generateTSConfig(program.input, program.output);
