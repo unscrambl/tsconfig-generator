@@ -19,13 +19,13 @@ function generateTSConfig(inputFilePath, outputFilePath)
 {
     let config = JSON.parse(fs.readFileSync(inputFilePath, 'utf8'));
 
-    walkTheObjectAndReplaceEnvironmentVariables(config);
+    walkTheObjectAndReplaceEnvironmentVariables(config, outputFilePath);
     fs.writeFileSync(outputFilePath ? outputFilePath : DEFAULT_TS_CONFIG_FILE_PATH, JSON.stringify(config, null,
         DEFAULT_JSON_INDENTATION));
     console.log(`Successfully created the file '${outputFilePath}'.`);
 }
 
-function walkTheObjectAndReplaceEnvironmentVariables(config)
+function walkTheObjectAndReplaceEnvironmentVariables(config, outputFilePath)
 {
     const environmentVariableRegex = new RegExp(/\$\{([\w]+)\}/);
 
@@ -33,7 +33,7 @@ function walkTheObjectAndReplaceEnvironmentVariables(config)
     {
         if (typeof config[key] === 'object')
         {
-            walkTheObjectAndReplaceEnvironmentVariables(config[key]);
+            walkTheObjectAndReplaceEnvironmentVariables(config[key], outputFilePath);
         }
         else
         {
@@ -48,7 +48,7 @@ function walkTheObjectAndReplaceEnvironmentVariables(config)
                     }
                     else if (isValidPath(environmentVariableValue))
                     {
-                        config[key] = config[key].replace(environmentVariableRegex, path.relative(process.cwd(),
+                        config[key] = config[key].replace(environmentVariableRegex, path.relative(path.dirname(outputFilePath),
                             environmentVariableValue));
                     }
                     else
