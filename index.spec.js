@@ -6,12 +6,13 @@ describe('tsconfig-generator', () =>{
     const generatedFilePath = 'test/tsconfig.json';
 
     before(() =>{
-        process.env['TEST_NODE_PATH'] = '/tmp/test/node/path';
-        process.env['TEST_GIT_ROOT'] = '/tmp/test/git/root';
+        // NOTE: Using relative paths to make sure that the tests work on any CWD. 
+        process.env['TEST_NODE_PATH'] = '../../test/node/path';
+        process.env['TEST_GIT_ROOT'] = '../../test/git/root';
     });
 
     after(() => {
-        fs.unlink(generatedFilePath);
+        fs.unlinkSync(generatedFilePath);
     });
 
     it('can generate the tsconfig.json with environment variables', () =>
@@ -28,8 +29,6 @@ describe('tsconfig-generator', () =>{
     function checkFileEquality(expectedFilePath, generatedFilePath){
         expectedFileBuffer = fs.readFileSync(expectedFilePath);
         generatedFileBuffer = fs.readFileSync(generatedFilePath);
-        console.log(generatedFileBuffer)
-        console.log(process.env.TRAVIS_BUILD_DIR)
         return expectedFileBuffer.equals(generatedFileBuffer);
     }
 });

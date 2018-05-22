@@ -1,19 +1,19 @@
 {
     "compilerOptions": {
-        "outDir": "../../../../tmp/test/node/path/output/lib",
+        "outDir": "../../test/node/path/output/lib",
         "paths": {
             "*": [
-                "../../../../tmp/test/node/path/*"
+                "../../test/node/path/*"
             ],
             "@package/*": [
-                "../../../../tmp/test/git/root/*"
+                "../../test/git/root/*"
             ],
             "@testHelpers/*": [
-                "../../../../tmp/test/git/root/test/ts/helpers/*"
+                "../../test/git/root/test/ts/helpers/*"
             ]
         },
         "typeRoots": [
-            "../../../../tmp/test/node/path/@types"
+            "../../test/node/path/@types"
         ],
         "sourceMap": true,
         "alwaysStrict": true,
