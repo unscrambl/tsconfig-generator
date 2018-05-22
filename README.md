@@ -1,7 +1,9 @@
 # tsconfig-generator
 Creates a tsconfig.json by using the paths defined with environment variables
 
-`npm install tsconfig-generator`
+```
+npm install tsconfig-generator
+```
 
 ```
 Usage: index [options]
