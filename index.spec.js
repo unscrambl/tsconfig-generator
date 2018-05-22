@@ -28,6 +28,8 @@ describe('tsconfig-generator', () =>{
     function checkFileEquality(expectedFilePath, generatedFilePath){
         expectedFileBuffer = fs.readFileSync(expectedFilePath);
         generatedFileBuffer = fs.readFileSync(generatedFilePath);
+        console.log(generatedFileBuffer)
+        console.log(process.env.TRAVIS_BUILD_DIR)
         return expectedFileBuffer.equals(generatedFileBuffer);
     }
 });
