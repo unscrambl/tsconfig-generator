@@ -1,5 +1,7 @@
 # tsconfig-generator
-Creates a tsconfig.json by using the paths defined with environment variables
+Creates a tsconfig.json by using the paths defined with environment variables. Use the pattern `${ENV_VARIABLE}` for 
+any string environment variables and use `#{ENV_VARIABLE}` pattern for path variables that are going to be converted 
+to a relative import.  
 
 ```
 npm install tsconfig-generator

@@ -1,33 +1,33 @@
 {
     "compilerOptions": {
-        "outDir": "${TEST_NODE_PATH}/output/lib",
-        "paths": {
-            "*": [
-                "${TEST_NODE_PATH}/*"
-            ],
-            "@package/*": [
-                "${TEST_GIT_ROOT}/*"
-            ],
-            "@testHelpers/*": [
-                "${TEST_GIT_ROOT}/test/ts/helpers/*"
-            ]
-        },
-        "typeRoots": [
-            "${TEST_NODE_PATH}/@types"
-        ],
-        "sourceMap": true,
         "alwaysStrict": true,
+        "baseUrl": "#{SOME_INVALID_ENVIRONMENT_VARIABLE}",
         "declaration": true,
         "experimentalDecorators": true,
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitThis": true,
         "noUnusedLocals": true,
+        "outDir": "#{TEST_NODE_PATH}/output/${PROJECT_NAME}/lib",
+        "paths": {
+            "*": [
+                "#{TEST_NODE_PATH}/*"
+            ],
+            "@package/*": [
+                "#{TEST_GIT_ROOT}/*"
+            ],
+            "@testHelpers/*": [
+                "#{TEST_GIT_ROOT}/test/ts/helpers/*"
+            ]
+        },
         "preserveConstEnums": true,
         "removeComments": true,
+        "sourceMap": true,
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "target": "es6",
-        "baseUrl": "."
+        "typeRoots": [
+            "#{TEST_NODE_PATH}/@types"
+        ]
     }
 }

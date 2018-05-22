@@ -1,6 +1,14 @@
 {
     "compilerOptions": {
-        "outDir": "../../../test/node/path/output/lib",
+        "alwaysStrict": true,
+        "baseUrl": "#{SOME_INVALID_ENVIRONMENT_VARIABLE}",
+        "declaration": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "outDir": "../../../test/node/path/output/foo/lib",
         "paths": {
             "*": [
                 "../../../test/node/path/*"
@@ -12,22 +20,14 @@
                 "../../../test/git/root/test/ts/helpers/*"
             ]
         },
-        "typeRoots": [
-            "../../../test/node/path/@types"
-        ],
-        "sourceMap": true,
-        "alwaysStrict": true,
-        "declaration": true,
-        "experimentalDecorators": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
         "preserveConstEnums": true,
         "removeComments": true,
+        "sourceMap": true,
         "strictFunctionTypes": true,
         "strictNullChecks": true,
         "target": "es6",
-        "baseUrl": "."
+        "typeRoots": [
+            "../../../test/node/path/@types"
+        ]
     }
 }
