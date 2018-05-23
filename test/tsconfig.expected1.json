@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "baseUrl": "../../../test/git",
+        "declaration": true,
+        "experimentalDecorators": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitThis": true,
+        "noUnusedLocals": true,
+        "outDir": "../../test/node/path/output/foo/lib",
+        "paths": {
+            "*": [
+                "../../test/node/path/*"
+            ],
+            "@package/*": [
+                "../../test/git/root/*"
+            ],
+            "@testHelpers/*": [
+                "../../test/git/root/test/ts/helpers/*"
+            ]
+        },
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "sourceMap": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "target": "es6",
+        "typeRoots": [
+            "../../test/node/path/@types"
+        ]
+    }
+}
