@@ -21,10 +21,16 @@ describe('tsconfig-generator', () =>
 
     it('can generate the tsconfig.json with environment variables', () =>
     {
-        let inputFilePath = 'test/tsconfig.base1.json';
+        let inputFilePath = 'test/tsconfig.sample1.json';
         let expectedFilePath = 'test/tsconfig.expected1.json';
         execSync(`./index.js -i ${inputFilePath} -o ${generatedFilePath}`);
         assert(checkFileEquality(expectedFilePath, generatedFilePath));
+    });
+
+    it('should throw an error if the configuration template includes an invalid environment variable', () =>
+    {
+        let inputFilePath = 'test/tsconfig.sample2.json';
+        assert.throws(() => { execSync(`./index.js -i ${inputFilePath} -o ${generatedFilePath}`, { stdio: 'ignore' }); });
     });
 
     function checkFileEquality(expectedFilePath, generatedFilePath)

@@ -7,12 +7,11 @@ const program = require('commander');
 const DEFAULT_TS_CONFIG_FILE_PATH = './tsconfig.json';
 const DEFAULT_JSON_INDENTATION = 4;
 const environmentVariableRegex = new RegExp(/\$\{([\w]+)\}/, 'g');
-const pathVariableRegex = new RegExp(/#\{([\w]+)\}/, 'g');
 
 program
-    .version('0.0.2')
-    .option('-i, --input [inputFile]', 'Input JSON file path')
-    .option('-o, --output [outputFile]', 'Output JSON file path (Default: ./tsconfig.json)')
+    .version('0.0.3')
+    .option('-i, --input [inputFile]', 'Specifies the path of the input JSON file')
+    .option('-o, --output [outputFile]', 'Specifies the path of the output JSON file')
     .parse(process.argv);
 
 generateTSConfig(program.input, program.output);
@@ -39,39 +38,36 @@ function walkTheObjectAndReplaceEnvironmentVariables(config, outputFilePath)
         {
             if (typeof config[key] === 'string')
             {
-                config[key] = replaceMatchedAll(environmentVariableRegex, config[key], outputFilePath);
-                config[key] = replaceMatchedAll(pathVariableRegex, config[key], outputFilePath);
+                config[key] = replaceAllMatches(environmentVariableRegex, config[key]);
+                if (path.isAbsolute(path.dirname(config[key])))
+                {
+                    config[key] = getRelativePathTo(outputFilePath, config[key]);
+                }
             }
         }
     }
 }
 
-function replaceMatchedAll(regex, text, outputFilePath)
+function getRelativePathTo(baseDir, targetPath)
 {
-    let matched = null;
+    const relativePath = path.relative(path.dirname(baseDir), path.isAbsolute(path.dirname(targetPath)) ? targetPath :
+        path.dirname(targetPath));
+    if (path.dirname(relativePath) === '.')
+    {
+        return './' + relativePath;
+    }
+    return relativePath;
+}
 
-    do {
-        matched = regex.exec(text);
-        if (matched)
+function replaceAllMatches(regex, text)
+{
+    return text.replace(regex, function (substring, variableName)
+    {
+        const environmentVariableValue = process.env[variableName];
+        if (!environmentVariableValue)
         {
-            const environmentVariableValue = process.env[matched[1]];
-            if (!environmentVariableValue)
-            {
-                console.log(`WARNING: Environment variable '${matched[1]}' has no value. Skipping.`);
-            }
-            else if (regex === pathVariableRegex)
-            {
-                text = text.replace(matched[0], path.relative(path.dirname(outputFilePath),
-                    environmentVariableValue));
-            }
-            else if (regex === environmentVariableRegex)
-            {
-                console.log(
-                    `WARNING: '${matched[1]}' is not a valid path. Using the actual value '${environmentVariableValue}'.`
-                );
-                text = text.replace(matched[0], environmentVariableValue);
-            }
+            throw new Error(`environment variable '${variableName}' has no value.`);
         }
-    } while (matched);
-    return text;
+        return process.env[variableName];
+    });
 }

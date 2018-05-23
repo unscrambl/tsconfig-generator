@@ -8,16 +8,16 @@
         "moduleResolution": "node",
         "noImplicitThis": true,
         "noUnusedLocals": true,
-        "outDir": "../../test/node/path/output/foo/lib",
+        "outDir": "${TEST_NODE_PATH}/output/${PROJECT_NAME}/lib",
         "paths": {
             "*": [
-                "../../test/node/path/*"
+                "${TEST_NODE_PATH}/*"
             ],
             "@package/*": [
-                "../../test/git/root/*"
+                "${TEST_GIT_ROOT}/*"
             ],
             "@testHelpers/*": [
-                "../../test/git/root/test/ts/helpers/*"
+                "${TEST_GIT_ROOT}/test/ts/helpers/*"
             ]
         },
         "preserveConstEnums": true,
@@ -27,7 +27,7 @@
         "strictNullChecks": true,
         "target": "es6",
         "typeRoots": [
-            "../../test/node/path/@types"
+            "${TEST_NODE_PATH}/@types"
         ]
     }
 }
