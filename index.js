@@ -9,7 +9,7 @@ const DEFAULT_JSON_INDENTATION = 4;
 const environmentVariableRegex = new RegExp(/\$\{([\w]+)\}/, 'g');
 
 program
-    .version('0.0.3')
+    .version('0.0.4')
     .option('-i, --input [inputFile]', 'Specifies the path of the input JSON file')
     .option('-o, --output [outputFile]', 'Specifies the path of the output JSON file')
     .parse(process.argv);
