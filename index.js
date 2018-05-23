@@ -19,20 +19,21 @@ generateTSConfig(program.input, program.output);
 function generateTSConfig(inputFilePath, outputFilePath = DEFAULT_TS_CONFIG_FILE_PATH)
 {
     let config = JSON.parse(fs.readFileSync(inputFilePath, 'utf8'));
-
-    walkTheObjectAndReplaceEnvironmentVariables(config, outputFilePath);
+    const absoluteBaseUrlPath = replaceAllMatches(environmentVariableRegex, config.compilerOptions.baseUrl);
+    config.compilerOptions.baseUrl = getRelativePathTo(path.dirname(outputFilePath), absoluteBaseUrlPath);
+    walkTheObjectAndReplaceEnvironmentVariables(config, absoluteBaseUrlPath);
     fs.writeFileSync(outputFilePath ? outputFilePath : DEFAULT_TS_CONFIG_FILE_PATH, JSON.stringify(config, null,
         DEFAULT_JSON_INDENTATION));
     console.log(`Successfully created the file '${outputFilePath}'.`);
 }
 
-function walkTheObjectAndReplaceEnvironmentVariables(config, outputFilePath)
+function walkTheObjectAndReplaceEnvironmentVariables(config, absoluteBaseUrlPath)
 {
     for (let key in config)
     {
         if (typeof config[key] === 'object')
         {
-            walkTheObjectAndReplaceEnvironmentVariables(config[key], outputFilePath);
+            walkTheObjectAndReplaceEnvironmentVariables(config[key], absoluteBaseUrlPath);
         }
         else
         {
@@ -41,7 +42,7 @@ function walkTheObjectAndReplaceEnvironmentVariables(config, outputFilePath)
                 config[key] = replaceAllMatches(environmentVariableRegex, config[key]);
                 if (path.isAbsolute(path.dirname(config[key])))
                 {
-                    config[key] = getRelativePathTo(outputFilePath, config[key]);
+                    config[key] = getRelativePathTo(absoluteBaseUrlPath, config[key]);
                 }
             }
         }
@@ -50,8 +51,9 @@ function walkTheObjectAndReplaceEnvironmentVariables(config, outputFilePath)
 
 function getRelativePathTo(baseDir, targetPath)
 {
-    const relativePath = path.relative(path.dirname(baseDir), path.isAbsolute(path.dirname(targetPath)) ? targetPath :
+    const relativePath = path.relative(baseDir, path.isAbsolute(path.dirname(targetPath)) ? targetPath :
         path.dirname(targetPath));
+
     if (path.dirname(relativePath) === '.')
     {
         return './' + relativePath;

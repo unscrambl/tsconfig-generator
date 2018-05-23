@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "alwaysStrict": true,
-        "baseUrl": ".",
+        "baseUrl": "${TEST_GIT_ROOT}",
         "declaration": true,
         "experimentalDecorators": true,
         "module": "commonjs",
