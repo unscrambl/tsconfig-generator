@@ -1,4 +1,5 @@
 {
+    "extends": "${TEST_GIT_ROOT}/tsconfig.json",
     "compilerOptions": {
         "alwaysStrict": true,
         "baseUrl": "${TEST_GIT_ROOT}",
