@@ -31,5 +31,5 @@
     "scripts": {
         "test": "node_modules/mocha/bin/mocha *.spec.js"
     },
-    "version": "0.0.5"
+    "version": "0.0.6"
 }
