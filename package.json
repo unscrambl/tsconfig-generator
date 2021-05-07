@@ -6,7 +6,7 @@
     },
     "dependencies": {
         "commander": "2.15.1",
-        "lodash": "4.17.14"
+        "lodash": "4.17.21"
     },
     "description": "Creates a tsconfig.json by using the paths defined with environment variables",
     "devDependencies": {
