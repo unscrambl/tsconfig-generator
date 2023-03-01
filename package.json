@@ -11,7 +11,7 @@
     "description": "Creates a tsconfig.json by using the paths defined with environment variables",
     "devDependencies": {
         "is-valid-path": "^0.1.1",
-        "mocha": "^5.2.0"
+        "mocha": "^10.2.0"
     },
     "homepage": "https://github.com/unscrambl/tsconfig-generator#readme",
     "keywords": [
